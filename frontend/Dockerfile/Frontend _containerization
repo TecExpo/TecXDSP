@@ -1,0 +1,1 @@
+Dockerfile (Frontend containerization)
