@@ -1,0 +1,8 @@
+📂 orchestration/ (Kubernetes, Helm, ArgoCD)
+ │   ├── 📂 helm/
+ │   │   ├── 📜 Chart.yaml
+ │   │   ├── 📜 values.yaml
+ │   ├── 📂 k8s-manifests/
+ │   │   ├── 📜 deployment.yaml
+ │   │   ├── 📜 service.yaml
+ │   │   ├── 📜 ingress.yaml
