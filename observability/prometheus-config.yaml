@@ -1,0 +1,4 @@
+observability/ (Grafana, Prometheus, Loki, Tempo)
+ │   ├── 📜 prometheus-config.yaml
+ │   ├── 📜 grafana-dashboards/
+ │   ├── 📜 loki-config.yaml
