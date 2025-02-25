@@ -12,19 +12,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hitech-design
+  name: tecx-dsp
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: hitech-design
+      app: tecxdsp
   template:
     metadata:
       labels:
-        app: hitech-design
+        app: tecxdsp
     spec:
       containers:
-      - name: hitech-design
-        image: my-registry/hitech-design:latest
+      - name: tecx-dsp
+        image: my-registry/tecx-dsp:latest
 ```
 
