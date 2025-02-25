@@ -1,1 +1,20 @@
-
+### ArgoCD Configuration for GitOps Deployment (infrastructure/argocd_config.yaml)
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tecx-dsp
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: 'https://github.com/TecExpo/TecXDSP.git'
+    path: orchestration/k8s-manifests
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+```
