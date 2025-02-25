@@ -1,0 +1,9 @@
+ orchestration/
+│   │-- helm/
+│   │   │-- Chart.yaml
+│   │   │-- values.yaml
+│   │   │-- templates/
+│   │       │-- deployment.yaml
+│   │       │-- service.yaml
+│   │-- k8s-manifests/
+│   │   │-- deployment.yaml
