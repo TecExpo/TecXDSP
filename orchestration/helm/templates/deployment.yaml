@@ -1,9 +1,30 @@
- orchestration/
-│   │-- helm/
-│   │   │-- Chart.yaml
-│   │   │-- values.yaml
-│   │   │-- templates/
-│   │       │-- deployment.yaml
-│   │       │-- service.yaml
-│   │-- k8s-manifests/
-│   │   │-- deployment.yaml
+ #orchestration/
+#│   │-- helm/
+#│   │   │-- Chart.yaml
+#│   │   │-- values.yaml
+#│   │   │-- templates/
+#│   │       │-- deployment.yaml
+#│   │       │-- service.yaml
+#│   │-- k8s-manifests/
+#│   │   │-- deployment.yaml
+### Helm Chart for Kubernetes Deployment (orchestration/helm/templates/deployment.yaml)
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hitech-design
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: hitech-design
+  template:
+    metadata:
+      labels:
+        app: hitech-design
+    spec:
+      containers:
+      - name: hitech-design
+        image: my-registry/hitech-design:latest
+```
+
