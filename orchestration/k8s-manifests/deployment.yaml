@@ -1,8 +1,15 @@
-📂 orchestration/ (Kubernetes, Helm, ArgoCD)
- │   ├── 📂 helm/
- │   │   ├── 📜 Chart.yaml
- │   │   ├── 📜 values.yaml
- │   ├── 📂 k8s-manifests/
- │   │   ├── 📜 deployment.yaml
- │   │   ├── 📜 service.yaml
- │   │   ├── 📜 ingress.yaml
+apiVersion: autoscaling.keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: backend-scaler
+spec:
+  scaleTargetRef:
+    name: backend
+  minReplicaCount: 3
+  maxReplicaCount: 10
+  triggers:
+    - type: prometheus
+      metadata:
+        serverAddress: http://prometheus.default.svc.cluster.local:9090
+        query: http_request_duration_seconds{job="backend"}
+        threshold: "0.5"
