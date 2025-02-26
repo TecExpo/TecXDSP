@@ -1,12 +1,24 @@
-devops/
-│   ├── ci-cd/
-│   │   ├── github-actions.yaml
-│   │   ├── helm-chart/
-│   ├── monitoring/
-│   │   ├── prometheus.yaml
-│   │   ├── grafana-dashboard.json
-│   ├── logging/
-│   │   ├── loki.yaml
-│   │   ├── tempo.yaml
-│   ├── alerts/
-│   │   ├── alertmanager.yaml
+name: Deploy to Kubernetes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Set Up Kubernetes
+        uses: azure/setup-kubectl@v1
+
+      - name: Set Up Helm
+        uses: azure/setup-helm@v1
+
+      - name: Deploy to Kubernetes with Helm
+        run: |
+          helm upgrade --install hitech-platform devops/ci-cd/helm-chart/
