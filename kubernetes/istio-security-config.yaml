@@ -13,7 +13,7 @@ metadata:
   name: backend
 spec:
   hosts:
-    - backend.hitech.com
+    - backend.dsp.tecx.ai
   http:
     - route:
         - destination:
