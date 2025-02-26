@@ -1,0 +1,12 @@
+devops/
+│   ├── ci-cd/
+│   │   ├── github-actions.yaml
+│   │   ├── helm-chart/
+│   ├── monitoring/
+│   │   ├── prometheus.yaml
+│   │   ├── grafana-dashboard.json
+│   ├── logging/
+│   │   ├── loki.yaml
+│   │   ├── tempo.yaml
+│   ├── alerts/
+│   │   ├── alertmanager.yaml
