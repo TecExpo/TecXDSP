@@ -1,0 +1,18 @@
+name: Security Scan
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'  # Runs weekly at 3 AM on Mondays
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Run Snyk for Dependency Scan
+        run: |
+          npm install -g snyk
+          snyk auth ${{ secrets.SNYK_TOKEN }}
+          snyk test
