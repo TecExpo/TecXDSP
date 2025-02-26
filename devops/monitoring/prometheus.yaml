@@ -1,12 +1,11 @@
-devops/
-│   ├── ci-cd/
-│   │   ├── github-actions.yaml
-│   │   ├── helm-chart/
-│   ├── monitoring/
-│   │   ├── prometheus.yaml
-│   │   ├── grafana-dashboard.json
-│   ├── logging/
-│   │   ├── loki.yaml
-│   │   ├── tempo.yaml
-│   ├── alerts/
-│   │   ├── alertmanager.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: backend-monitor
+spec:
+  selector:
+    matchLabels:
+      app: backend
+  endpoints:
+    - port: 8080
+      interval: 30s
