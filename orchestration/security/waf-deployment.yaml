@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: waf
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: waf
+  template:
+    metadata:
+      labels:
+        app: waf
+    spec:
+      containers:
+        - name: waf
+          image: owasp/modsecurity-crs
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: modsecurity-config
+              mountPath: /etc/modsecurity.d/
+      volumes:
+        - name: modsecurity-config
+          configMap:
+            name: modsecurity-rules
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: waf-service
+spec:
+  selector:
+    app: waf
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
