@@ -1,12 +1,15 @@
-devops/
-│   ├── ci-cd/
-│   │   ├── github-actions.yaml
-│   │   ├── helm-chart/
-│   ├── monitoring/
-│   │   ├── prometheus.yaml
-│   │   ├── grafana-dashboard.json
-│   ├── logging/
-│   │   ├── loki.yaml
-│   │   ├── tempo.yaml
-│   ├── alerts/
-│   │   ├── alertmanager.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tempo-config
+data:
+  tempo.yaml: |
+    receivers:
+      otlp:
+        protocols:
+          grpc:
+          http:
+    storage:
+      backend: local
+      local:
+        path: /var/tempo
