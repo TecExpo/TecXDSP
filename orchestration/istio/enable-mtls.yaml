@@ -1,7 +1,16 @@
- orchestration/
-│   ├── istio/
-│   │   ├── install-istio.sh
-│   │   ├── enable-mtls.yaml
-│   │   ├── canary-deployment.yaml
-│   │   ├── blue-green-deployment.yaml
-│   │   ├── traffic-splitting.yaml
+ #orchestration/
+#│   ├── istio/
+#│   │   ├── install-istio.sh
+#│   │   ├── enable-mtls.yaml
+#│   │   ├── canary-deployment.yaml
+#│   │   ├── blue-green-deployment.yaml
+#│   │   ├── traffic-splitting.yaml
+
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: default
+spec:
+  mtls:
+    mode: STRICT
