@@ -1,0 +1,11 @@
+groups:
+  - name: API-Alerts
+    rules:
+      - alert: High Response Time
+        expr: http_request_duration_seconds{job="backend"} > 0.5
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Backend API is slow"
+          description: "The API response time is above 500ms for more than 1 minute."
