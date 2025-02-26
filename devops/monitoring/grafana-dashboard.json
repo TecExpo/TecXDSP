@@ -1,12 +1,17 @@
-devops/
-│   ├── ci-cd/
-│   │   ├── github-actions.yaml
-│   │   ├── helm-chart/
-│   ├── monitoring/
-│   │   ├── prometheus.yaml
-│   │   ├── grafana-dashboard.json
-│   ├── logging/
-│   │   ├── loki.yaml
-│   │   ├── tempo.yaml
-│   ├── alerts/
-│   │   ├── alertmanager.yaml
+{
+  "dashboard": {
+    "title": "HiTech Platform Metrics",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "CPU Usage",
+        "targets": [
+          {
+            "expr": "sum(rate(container_cpu_usage_seconds_total[5m]))",
+            "legendFormat": "CPU Usage"
+          }
+        ]
+      }
+    ]
+  }
+}
