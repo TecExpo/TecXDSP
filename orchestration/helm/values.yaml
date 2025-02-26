@@ -1,1 +1,9 @@
+image:
+  frontend: myrepo/frontend:latest
+  backend: myrepo/backend:latest
 
+replicaCount: 3
+
+service:
+  type: LoadBalancer
+  port: 80
