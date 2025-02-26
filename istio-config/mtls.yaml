@@ -1,0 +1,3 @@
+istio-config/                      # Istio Service Mesh  
+│   ├── mtls.yaml                       # Zero-Trust Security  
+│   ├── traffic-routing.yaml             # AI-Based Traffic Control 
