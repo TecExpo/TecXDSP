@@ -1,0 +1,3 @@
+│── kubernetes/                         # Kubernetes Deployment  
+│   ├── deployment.yaml                   # Service Deployment  
+│   ├── statefulset.yaml                   # ML Model Storage
