@@ -1,3 +1,6 @@
+# Combined Istio Security Configuration
+
+# Istio Mutual TLS (mTLS) Configuration
 apiVersion: security.istio.io/v1beta1
 kind: PeerAuthentication
 metadata:
@@ -7,6 +10,7 @@ spec:
   mtls:
     mode: STRICT
 ---
+# Istio Traffic Routing for Canary Deployments
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
@@ -25,6 +29,7 @@ spec:
             subset: v2
           weight: 20
 ---
+# AI-Powered Web Application Firewall (WAF) Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -45,6 +50,7 @@ spec:
           ports:
             - containerPort: 80
 ---
+# AI-Powered Homomorphic Encryption Service Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
