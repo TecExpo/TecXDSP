@@ -1,0 +1,171 @@
+# Combined Istio Security Configuration
+
+# Istio Mutual TLS (mTLS) Configuration
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: default
+spec:
+  mtls:
+    mode: STRICT
+---
+# Istio Traffic Routing for Canary Deployments
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: backend
+spec:
+  hosts:
+    - backend.dsp.tecx.ai
+  http:
+    - route:
+        - destination:
+            host: backend
+            subset: v1
+          weight: 80
+        - destination:
+            host: backend
+            subset: v2
+          weight: 20
+---
+# AI-Powered Web Application Firewall (WAF) Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: waf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: waf
+  template:
+    metadata:
+      labels:
+        app: waf
+    spec:
+      containers:
+        - name: waf
+          image: owasp/modsecurity-crs
+          ports:
+            - containerPort: 80
+---
+# AI-Powered Homomorphic Encryption Service Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-encryption
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-encryption
+  template:
+    metadata:
+      labels:
+        app: ai-encryption
+    spec:
+      containers:
+        - name: ai-encryption
+          image: ai/homomorphic-encryption
+          ports:
+            - containerPort: 5000
+---
+# Grafana Dashboard Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+        - name: grafana
+          image: grafana/grafana
+          ports:
+            - containerPort: 3000
+---
+# Prometheus Monitoring Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: monitoring
+data:
+  prometheus.yml: |
+    global:
+      scrape_interval: 15s
+    scrape_configs:
+      - job_name: 'kubernetes'
+        static_configs:
+          - targets: ['localhost:9090']
+---
+# Loki Logging Configuration
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: loki
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki
+  template:
+    metadata:
+      labels:
+        app: loki
+    spec:
+      containers:
+        - name: loki
+          image: grafana/loki
+          ports:
+            - containerPort: 3100
+---
+# Secure Federated Learning Authentication with Zero-Knowledge Proofs
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secure-fl-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secure-fl-auth
+  template:
+    metadata:
+      labels:
+        app: secure-fl-auth
+    spec:
+      containers:
+        - name: secure-fl-auth
+          image: ai/secure-fl-auth
+          ports:
+            - containerPort: 5001
+---
+# Multi-Party Computation for Privacy-Preserving Federated Learning
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mpc-secure-training
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mpc-secure-training
+  template:
+    metadata:
+      labels:
+        app: mpc-secure-training
+    spec:
+      containers:
+        - name: mpc-secure-training
+          image: ai/mpc-secure-training
+          ports:
+            - containerPort: 5002
